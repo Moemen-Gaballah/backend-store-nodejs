@@ -1,0 +1,5 @@
+https://salsita.github.io/node-pg-migrate/#/
+
+db-migrate create add-product
+npm run migrate up
+npm run migrate down
