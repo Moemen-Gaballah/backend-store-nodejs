@@ -12,6 +12,7 @@ exports.up = pgm => {
       references: 'users',
       // onDelete: 'cascade',
     },
+    price: {type: 'integer', default: 0},
     status: {type: 'varchar(50)', default: 'pending'},
     createdAt: {
       type: 'timestamp',

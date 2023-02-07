@@ -12,8 +12,9 @@ exports.up = pgm => {
             references: '"users"',
             // onDelete: 'cascade',
         },
-        title: {type: 'varchar(255)', notNull: true},
-        body: {type: 'text', notNull: true},
+        name: {type: 'varchar(255)', notNull: true},
+        body: {type: 'text', notNull: false},
+        price: {type: 'integer', notNull: true},
         image: {type: 'varchar(255)', default: null},
         createdAt: {
             type: 'timestamp',

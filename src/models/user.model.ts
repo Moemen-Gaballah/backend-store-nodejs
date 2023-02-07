@@ -31,7 +31,7 @@ export class UserModel {
 
             return rows[0]
         } catch (err) {
-            throw new Error(`Could not add new user ${username}. ${err}`)
+            throw new Error(`Email Already Exist ${username}. ${err}`)
         }
     } // end method register
 
@@ -51,12 +51,11 @@ export class UserModel {
 
             connection.release()
 
-            return null
+            return null;
         } catch (err) {
-            throw new Error(`Could not find user ${email}. ${err}`)
+            throw new Error(`User not found ${email}. ${err}`)
         }
     } // end fun login
-
 }
 
 

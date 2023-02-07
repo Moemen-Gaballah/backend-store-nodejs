@@ -2,6 +2,9 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import appRoutes from "./routes/routes";
 
+// import dotenv from 'dotenv'
+// dotenv.config()
+
 const PORT = process.env.PORT || 3000;
 const address: string = `http://localhost:${PORT}`
 

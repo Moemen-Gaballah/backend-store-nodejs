@@ -19,6 +19,7 @@ exports.up = pgm => {
       // onDelete: 'cascade',
     },
     quantity: {type: 'integer', default: 0},
+    price: {type: 'integer', default: 0},
     createdAt: {
       type: 'timestamp',
       notNull: true,

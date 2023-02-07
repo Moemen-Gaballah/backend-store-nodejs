@@ -13,18 +13,17 @@ export const register = async (req: Request, res: Response) => {
 
         if (username === undefined || email === undefined || password === undefined) {
             res.status(HttpStatusCode.BAD_REQUEST)
-            res.send("Some required parameters are missing! eg. :username, :email, :password")
+            res.send("All field (:username, :email, :password) is required.");
             return false
         }
 
         const user: User = await userModelInstance.register({username, email,password})
 
-
-        res.json(apiResponse(getTokenByUser(user), 200, "Register Successfully."))
+        res.json(apiResponse(getTokenByUser(user), HttpStatusCode.OK, "Register Successfully."))
     } catch (e) {
-        console.log("Error ", e);
-        res.status(HttpStatusCode.BAD_REQUEST)
-        res.json(e)
+
+        // @ts-ignore
+        res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "Email Already Exist."));
     }
 } // end function register
 
@@ -36,7 +35,7 @@ export const login = async (req: Request, res: Response) => {
 
         if (email === undefined || password === undefined) {
             res.status(HttpStatusCode.BAD_REQUEST)
-            res.send("Some required parameters are missing! eg. :email, :password")
+            res.send("All field (:email, :password) is required");
             return false
         }
 
@@ -54,7 +53,8 @@ export const login = async (req: Request, res: Response) => {
     } catch (e) {
         res.status(HttpStatusCode.BAD_REQUEST)
         console.log(`Error: ${e}`);
-        res.json(e)
+        // res.json(e)
+        res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "Invalid credentials"));
     }
 
 } // end method login
