@@ -10,7 +10,7 @@ export const index = async (req: Request, res: Response) => {
     try {
         const products: Product[] = await productModelInstance.index()
 
-        res.json(products)
+        res.json(apiResponse(products, HttpStatusCode.OK))
     } catch (e) {
         res.status(HttpStatusCode.BAD_REQUEST)
         res.json(e)
@@ -47,7 +47,8 @@ export const show = async (req: Request, res: Response) => {
 
         if (id === undefined) {
             res.status(HttpStatusCode.BAD_REQUEST)
-            res.send("All field is required :id.")
+            res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "The field ( :id) is required!"))
+
             return false
         }
 
@@ -101,6 +102,4 @@ export const destroy = async (req: Request, res: Response) => {
         res.json(e)
     }
 } // end func destroy
-
-
 

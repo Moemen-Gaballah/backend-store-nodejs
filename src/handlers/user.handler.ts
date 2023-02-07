@@ -1,4 +1,4 @@
-import {Application, Request, Response} from "express"
+import {Request, Response} from "express"
 import HttpStatusCode from "../enums/HttpStausCode";
 import {User, UserModel, getTokenByUser} from "../models/user.model";
 import {apiResponse} from "../helpers/ApiResponse";
@@ -13,7 +13,8 @@ export const register = async (req: Request, res: Response) => {
 
         if (username === undefined || email === undefined || password === undefined) {
             res.status(HttpStatusCode.BAD_REQUEST)
-            res.send("All field (:username, :email, :password) is required.");
+            res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "All field (:username, :email, :password) is required."))
+
             return false
         }
 
@@ -21,8 +22,7 @@ export const register = async (req: Request, res: Response) => {
 
         res.json(apiResponse(getTokenByUser(user), HttpStatusCode.OK, "Register Successfully."))
     } catch (e) {
-
-        // @ts-ignore
+        console.log(`Error ${e}`);
         res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "Email Already Exist."));
     }
 } // end function register
@@ -35,7 +35,9 @@ export const login = async (req: Request, res: Response) => {
 
         if (email === undefined || password === undefined) {
             res.status(HttpStatusCode.BAD_REQUEST)
-            res.send("All field (:email, :password) is required");
+            res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "All field (:email, :password) is required"))
+
+
             return false
         }
 
@@ -51,10 +53,9 @@ export const login = async (req: Request, res: Response) => {
         res.json(apiResponse({'token': getTokenByUser(user)}, HttpStatusCode.OK, "Login Successfully."));
 
     } catch (e) {
-        res.status(HttpStatusCode.BAD_REQUEST)
         console.log(`Error: ${e}`);
-        // res.json(e)
-        res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "Invalid credentials"));
+        res.status(HttpStatusCode.BAD_REQUEST)
+        res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "Something wrong happened Or Invalid credentials"));
     }
 
 } // end method login
