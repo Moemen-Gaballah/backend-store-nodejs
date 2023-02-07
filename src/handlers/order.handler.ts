@@ -1,4 +1,4 @@
-import {Application, Request, Response} from "express"
+import {Request, Response} from "express"
 import HttpStatusCode from "../enums/HttpStausCode";
 import {Order, OrderModel, OrderProduct} from "../models/order.model";
 import {apiResponse} from "../helpers/ApiResponse";
@@ -24,8 +24,8 @@ export const store = async (req: Request, res: Response) => {
         const user_id = req.body.user_id as unknown as number; // todo auth id if not admin
 
         if (products === undefined || status === undefined || user_id === undefined) {
-            res.status(HttpStatusCode.BAD_REQUEST)
 
+            res.status(HttpStatusCode.BAD_REQUEST)
             res.json(apiResponse("", HttpStatusCode.BAD_REQUEST, "All field (:products, :status, :user_id) is required!"))
 
             return false
@@ -33,7 +33,8 @@ export const store = async (req: Request, res: Response) => {
 
         const order: Order = await orderModelInstance.store({products, status, user_id})
 
-        res.json(order)
+        res.json(apiResponse(order, HttpStatusCode.OK, "Order Added!"))
+
     } catch (e) {
         res.status(HttpStatusCode.BAD_REQUEST)
         res.json(e)
@@ -53,7 +54,7 @@ export const show = async (req: Request, res: Response) => {
 
         const order: Order = await orderModelInstance.show(id)
 
-        res.json(order)
+        res.json(apiResponse(order, HttpStatusCode.OK))
     } catch (e) {
         res.status(HttpStatusCode.BAD_REQUEST)
         res.json(e)
@@ -76,7 +77,7 @@ export const update = async (req: Request, res: Response) => {
 
         const order: Order = await orderModelInstance.update(id, {products, status, user_id})
 
-        res.json(order)
+        res.json(apiResponse(order, HttpStatusCode.OK, "Order Updated."))
     } catch (e) {
         res.status(400)
         res.json(e)
