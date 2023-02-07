@@ -2,27 +2,26 @@
 
 exports.shorthands = undefined;
 
-exports.up = pgm => {
-
-  pgm.createTable('orders', {
-    id: 'id',
+exports.up = (pgm) => {
+  pgm.createTable("orders", {
+    id: "id",
     user_id: {
-      type: 'integer',
+      type: "integer",
       notNull: true,
-      references: 'users',
+      references: "users",
       // onDelete: 'cascade',
     },
-    price: {type: 'integer', default: 0},
-    status: {type: 'varchar(50)', default: 'pending'},
+    price: { type: "integer", default: 0 },
+    status: { type: "varchar(50)", default: "pending" },
     createdAt: {
-      type: 'timestamp',
+      type: "timestamp",
       notNull: true,
-      default: pgm.func('current_timestamp'),
+      default: pgm.func("current_timestamp"),
     },
-  })
-  pgm.createIndex('orders', 'user_id')
+  });
+  pgm.createIndex("orders", "user_id");
 };
 
-exports.down = pgm => {
-  pgm.dropTable('orders');
+exports.down = (pgm) => {
+  pgm.dropTable("orders");
 };

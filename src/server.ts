@@ -1,19 +1,18 @@
-import express from 'express'
+import express from "express";
 import appRoutes from "./routes/routes";
 
 // import dotenv from 'dotenv'
 // dotenv.config()
 
 const PORT = process.env.PORT || 3000;
-const address: string = `http://localhost:${PORT}`
+const address: string = `http://localhost:${PORT}`;
 
-const app = express();
+export const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-appRoutes(app)
+appRoutes(app);
 
-
-app.listen(PORT,  () => {
-    console.log(`starting app on: ${address}`)
+app.listen(PORT, () => {
+  console.log(`starting app on: ${address}`);
 });
