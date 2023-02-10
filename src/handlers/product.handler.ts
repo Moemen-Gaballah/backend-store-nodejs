@@ -10,6 +10,7 @@ export const index = async (req: Request, res: Response) => {
   try {
     const products: Product[] = await productModelInstance.index();
 
+    res.status(HttpStatusCode.OK);
     res.json(apiResponse(products, HttpStatusCode.OK));
   } catch (e) {
     res.status(HttpStatusCode.BAD_REQUEST);

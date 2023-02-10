@@ -9,6 +9,7 @@ export const index = async (req: Request, res: Response) => {
   try {
     const orders: Order[] = await orderModelInstance.index();
 
+    res.status(HttpStatusCode.OK);
     res.json(apiResponse(orders, HttpStatusCode.OK));
   } catch (e) {
     res.status(HttpStatusCode.BAD_REQUEST);
