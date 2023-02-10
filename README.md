@@ -19,6 +19,7 @@
 ## For testing only change file .env
 
 - `only change port for dev APP_ENV=local to APP_ENV=test`
+- every time clear database - TODO Rollback.
 - to run all tests `npm run test`
 
 ## notes
@@ -46,4 +47,6 @@
 - [] admin only delete order and make it soft deleted.
 - [] store price with orders.
 - [] add coupon and offers.
+- [] rollback migration 
+- [] run test default env test - migrate and rollback every time.
 - **_and more._**..
