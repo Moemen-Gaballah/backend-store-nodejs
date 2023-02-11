@@ -33,7 +33,6 @@ describe("User Service", () => {
                 const {status} = res;
 
                 // TODO Jwt token verify
-
                 expect(status).toBe(HttpStatusCode.OK);
             });
     });

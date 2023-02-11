@@ -17,7 +17,7 @@ export const register = async (req: Request, res: Response) => {
             password === undefined
         ) {
             res.status(HttpStatusCode.BAD_REQUEST);
-          return res.json(
+            return res.json(
                 apiResponse(
                     "",
                     HttpStatusCode.BAD_REQUEST,
@@ -98,3 +98,91 @@ export const login = async (req: Request, res: Response) => {
         );
     }
 }; // end method login
+
+
+export const index = async (req: Request, res: Response) => {
+    try {
+        const users: User[] = await userModelInstance.index()
+
+        res.status(HttpStatusCode.OK);
+        res.json(apiResponse(users,HttpStatusCode.OK,"All Users."));
+    } catch (e) {
+        res.status(HttpStatusCode.BAD_REQUEST);
+    }
+} // end method index
+
+
+export const show = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id as unknown as number
+
+
+        if (id === undefined) {
+            res.status(HttpStatusCode.BAD_REQUEST);
+            res.json(
+                apiResponse(
+                    "",
+                    HttpStatusCode.BAD_REQUEST,
+                    "The field (:id) is required"
+                )
+            );
+            return false;
+        }
+
+        const user: User = await userModelInstance.show(id)
+
+        res.status(HttpStatusCode.OK);
+        res.json(apiResponse(user, HttpStatusCode.OK));
+    } catch (e) {
+        res.status(HttpStatusCode.BAD_REQUEST)
+        res.json(e)
+    }
+} // end method show
+
+
+export const update = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id as unknown as number
+        const username = req.body.username as unknown as string
+
+        if (username === undefined || id === undefined) {
+            res.status(HttpStatusCode.BAD_REQUEST)
+            res.json(
+                apiResponse(
+                    "",
+                    HttpStatusCode.BAD_REQUEST,
+                    "The field (:id) is required"
+                )
+            );            return false
+        }
+
+        const user: User = await userModelInstance.update(id, username)
+
+        res.status(HttpStatusCode.OK);
+        res.json(apiResponse(user, HttpStatusCode.OK));
+    } catch (e) {
+        res.status(HttpStatusCode.BAD_REQUEST)
+        res.json(e)
+    }
+} // end method destroy
+
+export const destroy = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id as unknown as number
+
+        if (id === undefined) {
+            res.status(HttpStatusCode.BAD_REQUEST)
+            res.send("The field (:id) is required.");
+            return false
+        }
+
+        await userModelInstance.destroy(id)
+
+        res.json(apiResponse('', HttpStatusCode.OK, "User Deleted Successfully."));
+    } catch (e) {
+        res.status(HttpStatusCode.BAD_REQUEST)
+        res.json(e)
+    }
+}
+
+
