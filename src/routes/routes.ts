@@ -28,13 +28,8 @@ export default function appRoutes(app: Application) {
   });
 
   // Authentication
-  // app.get("/users", checkAuth, register)
   app.post("/api/register", register);
   app.post("/api/login", login);
-  // app.get("/users/:id", checkAuth, read)
-  // app.put("/users/:id", checkAuth, update)
-  // app.delete("/users/:id", checkAuth, deleteUser)
-  // app.post("/users/auth", authenticate)
 
   // Products
   app.get("/api/products", getProducts);
