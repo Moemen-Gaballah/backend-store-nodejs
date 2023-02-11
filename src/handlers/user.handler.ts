@@ -107,6 +107,7 @@ export const index = async (req: Request, res: Response) => {
         res.status(HttpStatusCode.OK);
         res.json(apiResponse(users,HttpStatusCode.OK,"All Users."));
     } catch (e) {
+        console.log(`Error: ${e}`);
         res.status(HttpStatusCode.BAD_REQUEST);
     }
 } // end method index
@@ -151,7 +152,7 @@ export const update = async (req: Request, res: Response) => {
                 apiResponse(
                     "",
                     HttpStatusCode.BAD_REQUEST,
-                    "The field (:id) is required"
+                    "The field (:id, :username) is required"
                 )
             );            return false
         }
@@ -161,6 +162,7 @@ export const update = async (req: Request, res: Response) => {
         res.status(HttpStatusCode.OK);
         res.json(apiResponse(user, HttpStatusCode.OK));
     } catch (e) {
+        console.log(`${e}`)
         res.status(HttpStatusCode.BAD_REQUEST)
         res.json(e)
     }

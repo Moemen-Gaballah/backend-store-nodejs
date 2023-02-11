@@ -96,7 +96,7 @@ export class UserModel {
 
   async update (id: number, username: string): Promise<User> {
     try {
-      const query = "UPDATE users SET username = $1 WHERE id = $3 RETURNING *"
+      const query = "UPDATE users SET username = $1 WHERE id = $2 RETURNING *"
       // @ts-ignore
       const connection = await client.connect()
       const {rows} = await connection.query(query, [username, id])

@@ -37,12 +37,12 @@ export default function appRoutes(app: Application) {
     });
 
     // Authentication
-    app.get("/users", checkAuth, getUsers)
+    app.get("/api/users", checkAuth, getUsers)
     app.post("/api/register", register);
     app.post("/api/login", login);
-    app.get("/users/:id", checkAuth, showUser)
-    app.put("/users/:id", checkAuth, updateUser)
-    app.delete("/users/:id", checkAuth, destroyUser)
+    app.get("/api/users/:id", checkAuth, showUser)
+    app.put("/api/users/:id", checkAuth, updateUser)
+    app.delete("/api/users/:id", checkAuth, destroyUser)
 
     // Products
     app.get("/api/products", getProducts);
