@@ -24,15 +24,18 @@ import {
     update as updateOrder,
     destroy as destroyOrder,
 } from "../handlers/order.handler";
+import HttpStatusCode from "../enums/HttpStausCode";
 
 export default function appRoutes(app: Application) {
     // landing page
     app.get("/", function (req: Request, res: Response) {
+        res.status(HttpStatusCode.OK)
         res.send("Hello World!");
     });
 
     // check health
     app.get("/healthz", function (req: Request, res: Response) {
+        res.status(HttpStatusCode.OK)
         res.send({status: "OK"});
     });
 

@@ -9,6 +9,7 @@ const SECRET = process.env.JWT_SECRET as Secret;
 
 export function checkAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers.authorization) {
+    res.status(HttpStatusCode.UNAUTHORIZED);
     res.json(
       apiResponse(
         "",

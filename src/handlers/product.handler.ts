@@ -39,7 +39,13 @@ export const store = async (req: Request, res: Response) => {
 
     const product: Product = await productModelInstance.store({ name, price });
 
-    res.json(product);
+    res.json(
+        apiResponse(
+            product,
+            HttpStatusCode.OK,
+            "Product Created."
+        )
+    );
   } catch (e) {
     console.log(e);
     res.status(HttpStatusCode.BAD_REQUEST);
