@@ -6,21 +6,41 @@
 
 - `docker-compose up -d --build`
 - `npm install`
-- `database name store you can change it from .env and you own credentials`
+- `database name store you can change it from .env and add your own credentials`
 - `npm run migrate up`
 - `npm run build`
+
+## Database configuration - All Project Configuration
+`APP_ENV=local
+DATABASE_URL=postgres://store:store@localhost:5432/store
+DATABASE_HOST=postgres://store:store@localhost:5432/store
+POSTGRES_DB=store
+POSTGRES_TEST_PORT=5433
+POSTGRES_PORT=5432
+POSTGRES_TEST_DB=store_test
+POSTGRES_USER=store
+POSTGRES_PASSWORD=store
+PORT=3000
+JWT_KEY=hello-world-for-jwt-secret-token
+JWT_SECRET=hello-world-for-jwt-secret-token
+SALT_ROUNDS=10
+BCRYPT_PASSWORD=hello-world-for-jwt-secret-token`
+
+
+
 
 ## Start Application
 
 - `npm run dev` as dev env
 - `npm run start` to production env
+- database default running on port `5432`
 - default running on port 3000 you can change it from env key PORT
 
 ## For testing only change file .env
 
-- `only change port for dev APP_ENV=local to APP_ENV=test`
+- `only change file env for dev APP_ENV=local to APP_ENV=test Or Drop all tables and flow instractions`
 - every time clear database - TODO Rollback.
-- to run all tests `npm run test`
+- to run all tests `npm run test` 
 
 ## notes
 
