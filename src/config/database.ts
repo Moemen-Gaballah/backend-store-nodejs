@@ -26,7 +26,7 @@ if (APP_ENV === "test") {
   });
 }
 
-if (APP_ENV === "local") {
+if (APP_ENV === "dev") {
   client = new Pool({
     host: POSTGRES_HOST,
     port: POSTGRES_PORT as unknown as number,

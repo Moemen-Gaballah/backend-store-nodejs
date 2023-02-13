@@ -6,13 +6,13 @@
   "scripts": {
     "start": "tsc && node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "migrate": "node-pg-migrate",
+    "migrate": "db-migrate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "npx tsc",
     "prettier": "npx prettier --write .",
     "jasmine": "jasmine",
-    "test": "npm run build && node-pg-migrate up && npm run jasmine"
+    "test": "npm run build && npm run migrate down && db-migrate up && npm run jasmine && npm run migrate down && npm run migrate down && npm run migrate down && npm run migrate down"
   },
   "keywords": [
     "nodejs",
