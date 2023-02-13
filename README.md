@@ -11,7 +11,7 @@
 - `npm run build`
 
 ## Database configuration - All Project Configuration
-`APP_ENV=local
+`APP_ENV=dev
 DATABASE_URL=postgres://store:store@localhost:5432/store
 DATABASE_HOST=postgres://store:store@localhost:5432/store
 POSTGRES_DB=store
@@ -37,13 +37,11 @@ BCRYPT_PASSWORD=hello-world-for-jwt-secret-token`
 - default running on port 3000 you can change it from env key PORT
 
 ## For testing only change file .env
-
-- `only change file env for dev APP_ENV=local to APP_ENV=test Or Drop all tables and flow instractions`
-- every time clear database - TODO Rollback.
+- 
 - to run all tests `npm run test` 
 
 ## notes
-
+- as best documentation
 - `collection in root StoreNodeJS.postman_collection for use API or test`
 
 ### Done
