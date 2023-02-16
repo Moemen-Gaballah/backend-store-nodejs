@@ -47,7 +47,7 @@ describe("Orders", () => {
         }
     })
 
-    it("create order", (done) => {
+    it("create order", async () => {
         request
             .post("/api/orders/create")
             .send(order)
@@ -58,8 +58,6 @@ describe("Orders", () => {
                 expect(status).toBe(HttpStatusCode.OK)
 
                 order_id = body.data.id as unknown as number
-
-                done()
             })
     })
 
@@ -74,17 +72,36 @@ describe("Orders", () => {
             });
     });
 
-    it("show order", (done) => {
+    it("show order", async () => {
         request
             .get(`/api/orders/${order_id}`)
             .set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
-                done()
             })
     })
 
-    it("update order", (done) => {
+
+    it("show order", async () => {
+        request
+            .get(`/api/orders/${order_id}`)
+            .set("Authorization", "bearer " + token)
+            .then((res) => {
+                expect(res.status).toBe(HttpStatusCode.OK)
+            })
+    })
+
+
+    it("Assert UserId", async () => {
+        request
+            .get(`/api/orders/${order_id}`)
+            .set("Authorization", "bearer " + token)
+            .then((res) => {
+                expect(res.body.data.user_id).toEqual(user_id);
+            })
+    })
+
+    it("update order", async () => {
         const updateOrder: BaseOrder = {
             ...order,
             status: false
@@ -96,15 +113,13 @@ describe("Orders", () => {
             .set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
-                done()
             })
     })
 
-    it("delete order", (done) => {
+    it("delete order", async () => {
         request.delete(`/api/orders/${order_id}`).set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
-                done()
             })
     })
 

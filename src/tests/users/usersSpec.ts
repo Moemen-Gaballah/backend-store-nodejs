@@ -111,9 +111,20 @@ describe("User Service", () => {
                 email: userInfo.email,
                 password: userInfo.password
             })
-            .set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
+            })
+    })// end test login correct data
+
+    it("login Expect token", async () => {
+        request
+            .post("/api/login")
+            .send({
+                email: userInfo.email,
+                password: userInfo.password
+            })
+            .then((res) => {
+                expect(res.body.token).not.toBeNull();
             })
     })// end test login correct data
 

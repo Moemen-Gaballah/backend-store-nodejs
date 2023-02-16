@@ -32,6 +32,19 @@ describe("Products", () => {
         // @ts-ignore
         const {user} = jwt.verify(token, SECRET)
         user_id = user.id as unknown as number
+
+        await request
+            .post("/api/products/create")
+            .send(product)
+            .set("Authorization", "bearer " + token)
+            .then((res) => {
+                const {body, status} = res
+
+                expect(status).toBe(HttpStatusCode.OK)
+                product_id = body.data.id as unknown as number;
+
+                console.log(`${body.data.id} Product Id `);
+            })
     })
 
 
@@ -43,7 +56,7 @@ describe("Products", () => {
             });
     });
 
-    it("store product", (done) => {
+    it("store product", async () => {
         request
             .post("/api/products/create")
             .send(product)
@@ -52,22 +65,33 @@ describe("Products", () => {
                 const {body, status} = res
 
                 expect(status).toBe(HttpStatusCode.OK)
-                product_id = body.data.id as unknown as number;
-                done()
+                // product_id = body.data.id as unknown as number;
+
             })
     })
 
 
-    it("show product", (done) => {
+    it("show product", async () => {
         request
             .get(`/api/products/${product_id}`)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
-                done()
             })
     })
 
-    it("update product", (done) => {
+    it("assert Product Name And Price", async () => {
+
+        console.log(`productId: ${product_id}`);
+        request
+            .get(`/api/products/${product_id}`)
+            .then((res) => {
+                expect(res.body.data.name).toEqual("Product01");
+                expect(res.body.data.price).toEqual(200);
+                expect(res.body.data.price).toBeGreaterThan(0);
+            })
+    })
+
+    it("update product", async () => {
         const newProductData: BaseProduct = {
             ...product,
             name: "updateProduct",
@@ -80,15 +104,13 @@ describe("Products", () => {
             .set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(HttpStatusCode.OK)
-                done()
             })
     })
 
-    it("delete product", (done) => {
+    it("delete product", async () => {
         request.delete(`/api/products/${product_id}`).set("Authorization", "bearer " + token)
             .then((res) => {
                 expect(res.status).toBe(200)
-                done()
             })
     })
 

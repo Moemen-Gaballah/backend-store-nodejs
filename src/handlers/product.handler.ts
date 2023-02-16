@@ -78,7 +78,11 @@ export const show = async (req: Request, res: Response) => {
 
     const product: Product = await productModelInstance.show(id);
 
-    res.json(product);
+    res.status(HttpStatusCode.OK);
+    res.json(apiResponse(
+        product,
+        HttpStatusCode.OK
+    ));
   } catch (e) {
     res.status(HttpStatusCode.BAD_REQUEST);
     res.json(e);
@@ -108,7 +112,11 @@ export const update = async (req: Request, res: Response) => {
       price,
     });
 
-    res.json(product);
+    res.status(HttpStatusCode.OK);
+    res.json(apiResponse(
+        product,
+        HttpStatusCode.OK));
+
   } catch (e) {
     res.status(HttpStatusCode.BAD_REQUEST);
     res.json(e);
