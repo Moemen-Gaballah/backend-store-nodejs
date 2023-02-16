@@ -123,9 +123,5 @@ describe("Orders", () => {
             })
     })
 
-    // end test delete user and products
-    // afterAll(async () => {
-    //     await request.delete(`/api/users/${user_id}`).set("Authorization", "bearer " + token)
-    //     await request.delete(`/api/products/${product_id}`).set("Authorization", "bearer " + token)
-    // })
+
 });

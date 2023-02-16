@@ -43,7 +43,6 @@ describe("Products", () => {
                 expect(status).toBe(HttpStatusCode.OK)
                 product_id = body.data.id as unknown as number;
 
-                console.log(`${body.data.id} Product Id `);
             })
     })
 
@@ -65,7 +64,6 @@ describe("Products", () => {
                 const {body, status} = res
 
                 expect(status).toBe(HttpStatusCode.OK)
-                // product_id = body.data.id as unknown as number;
 
             })
     })
@@ -81,7 +79,6 @@ describe("Products", () => {
 
     it("assert Product Name And Price", async () => {
 
-        console.log(`productId: ${product_id}`);
         request
             .get(`/api/products/${product_id}`)
             .then((res) => {
