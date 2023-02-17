@@ -1,7 +1,7 @@
 {
   "dev": {
     "driver": "pg",
-    "host": "postgres",
+    "host": "127.0.0.1",
     "port": 5432,
     "database": "store",
     "user": "store",
@@ -9,9 +9,9 @@
   },
   "test": {
     "driver": "pg",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "port": 5433,
-    "database": "store_test",
+    "database": "store",
     "user": "store",
     "password": "store"
   }

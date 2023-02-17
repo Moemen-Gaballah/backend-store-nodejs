@@ -12,7 +12,7 @@
     "build": "npx tsc",
     "prettier": "npx prettier --write .",
     "jasmine": "jasmine",
-    "test": "tsc --build --clean && npm run build && db-migrate up && npm run jasmine && db-migrate down && db-migrate down && db-migrate down && db-migrate down"
+    "test": "tsc --build --clean && npm run build && db-migrate --env test up &&  ENV=test npm run jasmine && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down"
   },
   "keywords": [
     "nodejs",
