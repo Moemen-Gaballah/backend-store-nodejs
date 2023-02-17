@@ -82,7 +82,7 @@ export class ProductModel {
   } // end method update products
 
   // TODO only admin or owner delete it.
-  async deleteProduct(id: number): Promise<Product> {
+  async destroy(id: number): Promise<Product> {
     try {
       const sql = "DELETE FROM products WHERE id=($1)";
       // @ts-ignore

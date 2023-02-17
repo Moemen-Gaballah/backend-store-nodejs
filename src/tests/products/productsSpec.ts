@@ -55,18 +55,19 @@ describe("Products", () => {
             });
     });
 
-    it("store product", async () => {
-        request
-            .post("/api/products/create")
-            .send(product)
-            .set("Authorization", "bearer " + token)
-            .then((res) => {
-                const {body, status} = res
-
-                expect(status).toBe(HttpStatusCode.OK)
-
-            })
-    })
+    // done store in beforeAll
+    // it("store product", async () => {
+    //     request
+    //         .post("/api/products/create")
+    //         .send(product)
+    //         .set("Authorization", "bearer " + token)
+    //         .then((res) => {
+    //             const {body, status} = res
+    //
+    //             expect(status).toBe(HttpStatusCode.OK)
+    //
+    //         })
+    // })
 
 
     it("show product", async () => {
@@ -114,8 +115,8 @@ describe("Products", () => {
 
     // end test delete user and products
     afterAll(async () => {
-        await request.delete(`/api/users/${user_id}`).set("Authorization", "bearer " + token)
         await request.delete(`/api/products/${product_id}`).set("Authorization", "bearer " + token)
+        await request.delete(`/api/users/${user_id}`).set("Authorization", "bearer " + token)
     })
 
 

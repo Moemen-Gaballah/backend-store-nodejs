@@ -140,7 +140,7 @@ export const destroy = async (req: Request, res: Response) => {
       return false;
     }
 
-    await productModelInstance.deleteProduct(id);
+    await productModelInstance.destroy(id);
 
     res.json(
       apiResponse("", HttpStatusCode.OK, "Product deleted successfully.")

@@ -6,6 +6,11 @@ import jwt, { Secret } from "jsonwebtoken";
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 const SECRET = process.env.JWT_SECRET as Secret;
 
+export interface BaseUser {
+  username: string;
+}
+
+
 export interface BaseAuthUser {
   username: string;
   email: string;
