@@ -32,12 +32,12 @@ export class ProductModel {
 
     try {
       const sql =
-        "INSERT INTO products (name, price, user_id) VALUES($1, $2, $3) RETURNING *";
+        "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
       // @ts-ignore
       const connection = await client.connect();
 
       // @ts-ignore
-      const { rows } = await connection.query(sql, [name, price, userId]);
+      const { rows } = await connection.query(sql, [name, price]);
 
       connection.release();
 

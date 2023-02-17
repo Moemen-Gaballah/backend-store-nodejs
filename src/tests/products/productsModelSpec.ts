@@ -38,7 +38,7 @@ describe("Product Model", () => {
 
             user_id = id;
             // @ts-ignore
-            global.userId = user_id as unknown as number;
+            // global.userId = user_id as unknown as number;
         }
 
     })

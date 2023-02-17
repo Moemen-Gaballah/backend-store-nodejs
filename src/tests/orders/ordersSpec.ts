@@ -103,14 +103,16 @@ describe("Orders", () => {
     it("update order", async () => {
         const updateOrder: BaseOrder = {
             ...order,
-            status: false
+            status: true
         }
+
 
         request
             .put(`/api/orders/${order_id}`)
             .send(updateOrder)
             .set("Authorization", "bearer " + token)
             .then((res) => {
+
                 expect(res.status).toBe(HttpStatusCode.OK)
             })
     })
